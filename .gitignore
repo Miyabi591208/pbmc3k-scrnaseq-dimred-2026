@@ -1,0 +1,8 @@
+data/pbmc3k_filtered_gene_bc_matrices.tar.gz
+data/filtered_gene_bc_matrices/
+data/*.rds
+results/*.rds
+results/gif_frames/
+.Rhistory
+.RData
+__pycache__/
