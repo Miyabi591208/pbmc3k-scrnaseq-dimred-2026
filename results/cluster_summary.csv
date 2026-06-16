@@ -1,0 +1,6 @@
+analysis,dims,cluster_count
+pc_sweep,5,9
+pc_sweep,10,9
+pc_sweep,20,9
+pc_sweep,30,8
+pc_sweep,50,7
