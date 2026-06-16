@@ -6,6 +6,10 @@ This project contains a reproducible analysis for the article:
 
 The analysis uses the public 10x Genomics PBMC3k dataset and compares PCA, t-SNE, and UMAP with controlled random seeds.
 
+GitHub repository:
+
+https://github.com/Miyabi591208/pbmc3k-scrnaseq-dimred-2026
+
 ## Data
 
 - Dataset: 10x Genomics, `3k PBMCs from a Healthy Donor`
@@ -138,4 +142,3 @@ Please cite:
 - Kobak and Berens, 2019
 - McInnes, Healy and Melville, UMAP
 - scikit-learn trustworthiness documentation if using the metric explanation
-
