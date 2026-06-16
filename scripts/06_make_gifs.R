@@ -7,7 +7,10 @@ set_reproducible_seed()
 
 make_gif <- function(frame_files, out_file, delay = 12) {
   img <- magick::image_read(frame_files)
-  anim <- magick::image_animate(img, fps = 100 / delay)
+  info <- magick::image_info(img)
+  canvas <- sprintf("%dx%d", max(info$width), max(info$height))
+  img <- magick::image_extent(img, geometry = canvas, gravity = "center", color = "white")
+  anim <- magick::image_animate(img, delay = delay, loop = 0, dispose = "background", optimize = FALSE)
   magick::image_write(anim, out_file)
   message("saved: ", out_file)
 }
@@ -85,11 +88,21 @@ make_gif(frames, here("gifs", "umap_neighbors_intuition_toy.gif"), delay = 10)
 grid_file <- here("figures", "umap_min_dist_grid_dims20.png")
 if (file.exists(grid_file)) {
   img <- magick::image_read(grid_file)
-  crops <- c("50%x50%+0+0", "50%x50%+600+0", "50%x50%+0+450", "50%x50%+600+450")
+  info <- magick::image_info(img)
+  cell_width <- floor(info$width[1] / 2)
+  cell_height <- floor(info$height[1] / 2)
+  crops <- c(
+    sprintf("%dx%d+0+0", cell_width, cell_height),
+    sprintf("%dx%d+%d+0", cell_width, cell_height, cell_width),
+    sprintf("%dx%d+0+%d", cell_width, cell_height, cell_height),
+    sprintf("%dx%d+%d+%d", cell_width, cell_height, cell_width, cell_height)
+  )
   frames <- character()
   for (i in seq_along(crops)) {
     frame <- file.path(tmp_dir, sprintf("pbmc_mindist_%02d.png", i))
-    magick::image_write(magick::image_crop(img, crops[i]), frame)
+    cropped <- magick::image_crop(img, crops[i])
+    cropped <- magick::image_extent(cropped, geometry = sprintf("%dx%d", cell_width, cell_height), gravity = "center", color = "white")
+    magick::image_write(cropped, frame)
     frames <- c(frames, frame)
   }
   make_gif(frames, here("gifs", "pbmc3k_umap_min_dist_sweep.gif"), delay = 70)
