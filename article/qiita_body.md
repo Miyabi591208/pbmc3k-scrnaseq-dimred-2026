@@ -409,7 +409,7 @@ UMAP は、高次元の近傍関係 $\mu_{ij}$ と低次元の近傍関係 $\nu_
 
 このGIFで見るべきこと：UMAPでは近傍グラフの情報が低次元配置に反映され、近傍の見方を変えると局所構造と大域構造のバランスが変わる、という直感です。
 
-![PBMC3k UMAP min_dist sweep](https://raw.githubusercontent.com/Miyabi591208/pbmc3k-scrnaseq-dimred-2026/main/gifs/pbmc3k_umap_min_dist_sweep.gif)
+![PBMC3k UMAP min_dist sweep](https://raw.githubusercontent.com/Miyabi591208/pbmc3k-scrnaseq-dimred-2026/main/gifs/pbmc3k_umap_min_dist_sweep.gif?v=20260616-fixgif)
 
 このGIFで見るべきこと：同じPBMC3kでも `min_dist` を変えると見た目の詰まり方が変わることです。
 
